@@ -64,7 +64,9 @@ namespace Assignment2_S19
 
         // Complete the rotLeft function below.
         static int[] rotLeft(int[] a, int d)
-        {
+        {   
+            int n;
+            n=a.length;
             return new int[] {};
         }
 
