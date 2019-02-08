@@ -13,6 +13,7 @@ namespace Assignment2_S19
             int[] a = { 1, 2, 3, 4, 5 };
             int[] r = rotLeft(a, d);
             displayArray(r);
+            Console.ReadKey();
 
             // Maximum toys
             Console.WriteLine("\n\nMaximum toys");
