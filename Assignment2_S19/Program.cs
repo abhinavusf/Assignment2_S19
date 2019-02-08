@@ -65,9 +65,20 @@ namespace Assignment2_S19
         // Complete the rotLeft function below.
         static int[] rotLeft(int[] a, int d)
         {   
-            int n;
-            n=a.length;
-            return new int[] {};
+            int n,l;
+            n = a.Length;
+            int []arr = new int[n];
+            l = n - 1;
+            for(int i=1;i<=d;i++)
+            {
+                int r = a[0];
+                for(int k=0;k<l;k++)
+                {
+                    a[k] = a[k + 1];
+                }
+                a[l] = r;
+            }
+            return a;
         }
 
         // Complete the maximumToys function below.
