@@ -20,6 +20,7 @@ namespace Assignment2_S19
             int k = 50;
             int[] prices = { 1, 12, 5, 111, 200, 1000, 10 };
             Console.WriteLine(maximumToys(prices, k));
+            Console.ReadKey();
 
             // Balanced sums
             Console.WriteLine("\n\nBalanced sums");
@@ -85,7 +86,28 @@ namespace Assignment2_S19
         // Complete the maximumToys function below.
         static int maximumToys(int[] prices, int k)
         {
-            return 0;
+            int n,r=0,c=0,s=0,l = prices.Length;
+            for (int i = 0; i < l - 1; i++)
+            {
+                for (int j = i + 1; j < l; j++)
+                {
+                    if (prices[i] > prices[j])
+                    {
+                        r = prices[i];
+                        prices[i] = prices[j];
+                        prices[j] = r;
+                    }
+                }
+            }
+            for (n = 0; n < l - 1; n++)
+            {
+                c = prices[n];
+                s = s + c;                
+                if (s > k)                    
+                break;                          
+            }
+            Console.WriteLine("The maximum number of toys that can be bought is: ");
+            return n;
         }
 
         // Complete the balancedSums function below.
