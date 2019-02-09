@@ -174,34 +174,28 @@ namespace Assignment2_S19
             string a = "5";
             string b = "0";
             string x = n.ToString();
-            if (n != 100)
+            
+            if (ones != 0 && ones != 5)
             {
-                if (ones != 0 && ones != 5)
+                if (ones > 2 && ones < 5)
                 {
-                    if (ones > 2 && ones < 5)
-                    {
-                        string str = string.Concat(tens, a);
-                        return Convert.ToInt32(str);
-                    }
-                    else if (ones > 7 && ones <= 9)
-                    {
-                        string str1 = string.Concat((tens + 1), b);
-                        return Convert.ToInt32(str1);
-                    }
-                    else
-                    {
-                        return n;
-                    }
-
+                    string str = string.Concat(tens, a);
+                    return Convert.ToInt32(str);
+                }
+                else if (ones > 7 && ones <= 9)
+                {
+                    string str1 = string.Concat((tens + 1), b);
+                    return Convert.ToInt32(str1);
                 }
                 else
                 {
                     return n;
                 }
+
             }
             else
             {
-                return 100;
+                return n;
             }
         }
     
