@@ -44,11 +44,12 @@ namespace Assignment2_S19
             displayArray(r3);
             Console.ReadKey();
 
-            /*          
+                      
             // find the median
             Console.WriteLine("\n\nFind the median");
-            int[] arr2 = { 0, 1, 2, 4, 6, 5, 3};
+            int[] arr2 = {0, 1, 2, 4, 6, 5, 3};
             Console.WriteLine(findMedian(arr2));
+            Console.ReadKey();
 
             // closest numbers
             Console.WriteLine("\n\nClosest numbers");
@@ -60,7 +61,7 @@ namespace Assignment2_S19
             Console.WriteLine("\n\nDay of Programmer");
             int year = 2017;
             Console.WriteLine(dayOfProgrammer(year));
-          */
+          
         }
 
         static void displayArray(int []arr)
@@ -106,10 +107,10 @@ namespace Assignment2_S19
             //        }
             //    }
             //}
-            sortNumbers(prices);
+            int[] sortedPrices= sortNumbers(prices);
             for (n = 0; n < l - 1; n++)
             {
-                c = prices[n];
+                c = sortedPrices[n];
                 s = s + c;                
                 if (s > k)                    
                 break;                          
@@ -218,24 +219,31 @@ namespace Assignment2_S19
             }
         }
     
-    /*
-            // Complete the findMedian function below.
-            static int findMedian(int[] arr)
+    
+        // Complete the findMedian function below.
+        static int findMedian(int[] arr)
+        {
+            int median=0;
+            //as it is mentioned that number of elements will always be odd, then median is (number of terms divided by 2)+1
+            //still check to be on safe side that number of elements is odd
+            if (arr.Length%2!=0)
             {
-                return 0;
+                median = sortNumbers(arr)[((arr.Length)/2)];
             }
+            return median;
+        }
 
-            // Complete the closestNumbers function below.
-            static int[] closestNumbers(int[] arr)
-            {
+        // Complete the closestNumbers function below.
+        static int[] closestNumbers(int[] arr)
+        {
                 return new int[] { };
-            }
+        }
 
-            // Complete the dayOfProgrammer function below.
-            static string dayOfProgrammer(int year)
-            {
+        // Complete the dayOfProgrammer function below.
+        static string dayOfProgrammer(int year)
+        {
                 return "";
-            }
-    */
+        }
+    
 }
 }
