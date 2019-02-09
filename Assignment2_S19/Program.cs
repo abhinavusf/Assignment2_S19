@@ -44,21 +44,22 @@ namespace Assignment2_S19
             displayArray(r3);
             Console.ReadKey();
 
-            /*          // find the median
-                      Console.WriteLine("\n\nFind the median");
-                      int[] arr2 = { 0, 1, 2, 4, 6, 5, 3};
-                      Console.WriteLine(findMedian(arr2));
+            /*          
+            // find the median
+            Console.WriteLine("\n\nFind the median");
+            int[] arr2 = { 0, 1, 2, 4, 6, 5, 3};
+            Console.WriteLine(findMedian(arr2));
 
-                      // closest numbers
-                      Console.WriteLine("\n\nClosest numbers");
-                      int[] arr3 = { 5, 4, 3, 2 };
-                      int[] r4 = closestNumbers(arr3);
-                      displayArray(r4);
+            // closest numbers
+            Console.WriteLine("\n\nClosest numbers");
+            int[] arr3 = { 5, 4, 3, 2 };
+            int[] r4 = closestNumbers(arr3);
+            displayArray(r4);
 
-                      // Day of programmer
-                      Console.WriteLine("\n\nDay of Programmer");
-                      int year = 2017;
-                      Console.WriteLine(dayOfProgrammer(year));
+            // Day of programmer
+            Console.WriteLine("\n\nDay of Programmer");
+            int year = 2017;
+            Console.WriteLine(dayOfProgrammer(year));
           */
         }
 
@@ -137,13 +138,13 @@ namespace Assignment2_S19
             return ("No");
     
         }
-        /*
-                // Complete the missingNumbers function below.
-                static int[] missingNumbers(int[] arr, int[] brr)
-                {
-                    return new int[] { };
-                }
-        */
+        
+        // Complete the missingNumbers function below.
+        static int[] missingNumbers(int[] arr, int[] brr)
+        {
+            return new int[] { };
+        }
+
         // Complete the gradingStudents function below.
         static int[] gradingStudents(int[] grades)
         {
