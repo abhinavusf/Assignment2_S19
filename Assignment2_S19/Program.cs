@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Assignment2_S19
 {
@@ -27,38 +29,41 @@ namespace Assignment2_S19
             List<int> arr = new List<int> { 1, 2, 3 };
             Console.WriteLine(balancedSums(arr));
             Console.ReadKey();
-
+/*
             // Missing numbers
             Console.WriteLine("\n\nMissing numbers");
             int[] arr1 = { 203, 204, 205, 206, 207, 208, 203, 204, 205, 206};
             int[] brr = {203, 204, 204, 205, 206, 207, 205, 208, 203, 206, 205, 206, 204};
             int[] r2 = missingNumbers(arr1, brr);
             displayArray(r2);
-
+*/
             // grading students
             Console.WriteLine("\n\nGrading students");
             int[] grades = { 73, 67, 38, 33 };
             int[] r3 = gradingStudents(grades);
             displayArray(r3);
+            Console.ReadKey();
 
-            // find the median
-            Console.WriteLine("\n\nFind the median");
-            int[] arr2 = { 0, 1, 2, 4, 6, 5, 3};
-            Console.WriteLine(findMedian(arr2));
+            /*          // find the median
+                      Console.WriteLine("\n\nFind the median");
+                      int[] arr2 = { 0, 1, 2, 4, 6, 5, 3};
+                      Console.WriteLine(findMedian(arr2));
 
-            // closest numbers
-            Console.WriteLine("\n\nClosest numbers");
-            int[] arr3 = { 5, 4, 3, 2 };
-            int[] r4 = closestNumbers(arr3);
-            displayArray(r4);
+                      // closest numbers
+                      Console.WriteLine("\n\nClosest numbers");
+                      int[] arr3 = { 5, 4, 3, 2 };
+                      int[] r4 = closestNumbers(arr3);
+                      displayArray(r4);
 
-            // Day of programmer
-            Console.WriteLine("\n\nDay of Programmer");
-            int year = 2017;
-            Console.WriteLine(dayOfProgrammer(year));
+                      // Day of programmer
+                      Console.WriteLine("\n\nDay of Programmer");
+                      int year = 2017;
+                      Console.WriteLine(dayOfProgrammer(year));
+          */
         }
 
-        static void displayArray(int []arr) {
+        static void displayArray(int []arr)
+        {
             Console.WriteLine();
             foreach(int n in arr) {
                 Console.Write(n + " ");
@@ -132,41 +137,37 @@ namespace Assignment2_S19
             return ("No");
     
         }
-
+/*
         // Complete the missingNumbers function below.
         static int[] missingNumbers(int[] arr, int[] brr)
         {
             return new int[] { };
         }
-
-
+*/
         // Complete the gradingStudents function below.
         static int[] gradingStudents(int[] grades)
         {
-            foreach (int grade in grades)
+            int multiple = 5;
+            List<int> rs = new List<int>();
+            for (int i = 0; i < grades.Length; i++)
             {
-                if(grade > 40)
+                int rem = grades[i] % multiple;
+                if (grades[i] >= 38 && rem > 2)
                 {
-                    if(diff(grade) <3)
-                    {
-
-                    }
+                    int result = grades[i] - rem;
+                    if (rem > (multiple / 2))
+                        result += multiple;
+                    rs.Add(result);
                 }
                 else
                 {
-                    return grade;
+                    rs.Add(grades[i]);
                 }
-
             }
-            return new int[] { };
+            return rs.OfType<int>().ToArray();
         }
 
-        public static int diff(int n)
-        {
-            int output;
-
-            return output;
-        }
+/*
         // Complete the findMedian function below.
         static int findMedian(int[] arr)
         {
@@ -184,5 +185,6 @@ namespace Assignment2_S19
         {
             return "";
         }
+*/
     }
 }
