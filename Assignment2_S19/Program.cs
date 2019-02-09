@@ -103,6 +103,14 @@ namespace Assignment2_S19
         // Complete the gradingStudents function below.
         static int[] gradingStudents(int[] grades)
         {
+            foreach (int grade in grades)
+            {
+                if(grade > 40)
+                {
+                
+                }
+            }
+
             return new int[] { };
         }
 
