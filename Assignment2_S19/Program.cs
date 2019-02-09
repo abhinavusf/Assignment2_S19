@@ -94,18 +94,19 @@ namespace Assignment2_S19
         static int maximumToys(int[] prices, int k)
         {
             int n,r=0,c=0,s=0,l = prices.Length;
-            for (int i = 0; i < l - 1; i++)
-            {
-                for (int j = i + 1; j < l; j++)
-                {
-                    if (prices[i] > prices[j])
-                    {
-                        r = prices[i];
-                        prices[i] = prices[j];
-                        prices[j] = r;
-                    }
-                }
-            }
+            //for (int i = 0; i < l - 1; i++)
+            //{
+            //    for (int j = i + 1; j < l; j++)
+            //    {
+            //        if (prices[i] > prices[j])
+            //        {
+            //            r = prices[i];
+            //            prices[i] = prices[j];
+            //            prices[j] = r;
+            //        }
+            //    }
+            //}
+            sortNumbers(prices);
             for (n = 0; n < l - 1; n++)
             {
                 c = prices[n];
@@ -115,6 +116,23 @@ namespace Assignment2_S19
             }
             Console.WriteLine("The maximum number of toys that can be bought is: ");
             return n;
+        }
+
+        public static int[] sortNumbers(int[] array)
+        {
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                for (int j = i + 1; j < array.Length; j++)
+                {
+                    if (array[i] > array[j])
+                    {
+                        int r = array[i];
+                        array[i] = array[j];
+                        array[j] = r;
+                    }
+                }
+            }
+            return array;
         }
 
         // Complete the balancedSums function below.
