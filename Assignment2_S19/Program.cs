@@ -130,13 +130,26 @@ namespace Assignment2_S19
             {
                 if(grade > 40)
                 {
-                
-                }
-            }
+                    if(diff(grade) <3)
+                    {
 
+                    }
+                }
+                else
+                {
+                    return grade;
+                }
+
+            }
             return new int[] { };
         }
 
+        public static int diff(int n)
+        {
+            int output;
+
+            return output;
+        }
         // Complete the findMedian function below.
         static int findMedian(int[] arr)
         {
