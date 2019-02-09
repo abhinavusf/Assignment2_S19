@@ -39,7 +39,7 @@ namespace Assignment2_S19
 */
             // grading students
             Console.WriteLine("\n\nGrading students");
-            int[] grades = { 73, 67, 38, 33 };
+            int[] grades = { 73, 67, 38, 33, 55, 98, 43, 49, 59, 69, 79, 89 };
             int[] r3 = gradingStudents(grades);
             displayArray(r3);
             Console.ReadKey();
@@ -137,54 +137,92 @@ namespace Assignment2_S19
             return ("No");
     
         }
-/*
-        // Complete the missingNumbers function below.
-        static int[] missingNumbers(int[] arr, int[] brr)
-        {
-            return new int[] { };
-        }
-*/
+        /*
+                // Complete the missingNumbers function below.
+                static int[] missingNumbers(int[] arr, int[] brr)
+                {
+                    return new int[] { };
+                }
+        */
         // Complete the gradingStudents function below.
         static int[] gradingStudents(int[] grades)
         {
-            int multiple = 5;
-            List<int> rs = new List<int>();
-            for (int i = 0; i < grades.Length; i++)
+            List<int> add_list = new List<int>();
+            int x = grades.Length;
+            int[] array = new int[x];
+            foreach (int grade in grades)
             {
-                int rem = grades[i] % multiple;
-                if (grades[i] >= 38 && rem > 2)
+                if (grade > 40)
                 {
-                    int result = grades[i] - rem;
-                    if (rem > (multiple / 2))
-                        result += multiple;
-                    rs.Add(result);
+                    int value = diff(grade);
+                    add_list.Add(value);
                 }
                 else
                 {
-                    rs.Add(grades[i]);
+                    add_list.Add(grade);
+                }
+
+            }
+            array = add_list.ToArray();
+            return (array);
+        }
+
+        public static int diff(int n)
+        {
+            int ones = n % 10;
+            int tens = n / 10;
+            string a = "5";
+            string b = "0";
+            string x = n.ToString();
+            if (n != 100)
+            {
+                if (ones != 0 && ones != 5)
+                {
+                    if (ones > 2 && ones < 5)
+                    {
+                        string str = string.Concat(tens, a);
+                        return Convert.ToInt32(str);
+                    }
+                    else if (ones > 7 && ones <= 9)
+                    {
+                        string str1 = string.Concat((tens + 1), b);
+                        return Convert.ToInt32(str1);
+                    }
+                    else
+                    {
+                        return n;
+                    }
+
+                }
+                else
+                {
+                    return n;
                 }
             }
-            return rs.OfType<int>().ToArray();
+            else
+            {
+                return 100;
+            }
         }
+    
+    /*
+            // Complete the findMedian function below.
+            static int findMedian(int[] arr)
+            {
+                return 0;
+            }
 
-/*
-        // Complete the findMedian function below.
-        static int findMedian(int[] arr)
-        {
-            return 0;
-        }
+            // Complete the closestNumbers function below.
+            static int[] closestNumbers(int[] arr)
+            {
+                return new int[] { };
+            }
 
-        // Complete the closestNumbers function below.
-        static int[] closestNumbers(int[] arr)
-        {
-            return new int[] { };
-        }
-
-        // Complete the dayOfProgrammer function below.
-        static string dayOfProgrammer(int year)
-        {
-            return "";
-        }
-*/
-    }
+            // Complete the dayOfProgrammer function below.
+            static string dayOfProgrammer(int year)
+            {
+                return "";
+            }
+    */
+}
 }
