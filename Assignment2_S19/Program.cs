@@ -29,14 +29,14 @@ namespace Assignment2_S19
             List<int> arr = new List<int> { 1, 2, 3 };
             Console.WriteLine(balancedSums(arr));
             Console.ReadKey();
-/*
+
             // Missing numbers
             Console.WriteLine("\n\nMissing numbers");
             int[] arr1 = { 203, 204, 205, 206, 207, 208, 203, 204, 205, 206};
             int[] brr = {203, 204, 204, 205, 206, 207, 205, 208, 203, 206, 205, 206, 204};
             int[] r2 = missingNumbers(arr1, brr);
             displayArray(r2);
-*/
+
             // grading students
             Console.WriteLine("\n\nGrading students");
             int[] grades = { 73, 67, 38, 33, 55, 98, 43, 49, 59, 69, 79, 89 };
@@ -159,13 +159,36 @@ namespace Assignment2_S19
             return ("Yes");
     
         }
-        
+
         // Complete the missingNumbers function below.
         static int[] missingNumbers(int[] arr, int[] brr)
         {
-            return new int[] { };
-        }
+            // Variables limited to the scope of this method
+            List<int> source = brr.ToList();
+            List<int> destination = arr.ToList();
+            List<int> final = new List<int>();
+            int[] finalArr = new int[] { };
 
+            //int[] arr1 = { 203, 204, 205, 206, 207, 208, 203, 204, 205, 206 };
+            //int[] brr = { 203, 204, 204, 205, 206, 207, 205, 208, 203, 206, 205, 206, 204 };
+
+            foreach (int item in source)
+            {
+                if (destination.Contains(item))
+                {
+                    destination.Remove(item);
+                    final.Add(item);
+                }
+            }
+            foreach (int item in final)
+            {
+                source.Remove(item);
+            }
+            finalArr = source.ToArray();
+            return sortNumbers(finalArr);
+
+        }
+    
         // Complete the gradingStudents function below.
         static int[] gradingStudents(int[] grades)
         {
@@ -220,8 +243,7 @@ namespace Assignment2_S19
                 return n;
             }
         }
-    
-    
+
         // Complete the findMedian function below.
         static int findMedian(int[] arr)
         {
@@ -261,7 +283,6 @@ namespace Assignment2_S19
                     //save the new minimum difference again
                     mindiff = currdiff;
                 }
-
             }
             return list.ToArray();
         }
