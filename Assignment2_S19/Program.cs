@@ -53,7 +53,7 @@ namespace Assignment2_S19
 
             // closest numbers
             Console.WriteLine("\n\nClosest numbers");
-            int[] arr3 = {0,0,0,0 };
+            int[] arr3 = {-20, -3916237, -357920, -3620601, 7374819, -7330761, 30, 6246457, -6461594, 266854, -520, -470};
             int[] r4 = closestNumbers(arr3);
             displayArray(r4);
             Console.ReadKey();
@@ -235,7 +235,7 @@ namespace Assignment2_S19
             }
             return median;
         }
-
+            
         // Complete the closestNumbers function below.
         static int[] closestNumbers(int[] arr)
         {
@@ -258,6 +258,7 @@ namespace Assignment2_S19
                     list.Clear();
                     list.Add(sortedArr[i]);
                     list.Add(sortedArr[i+1]);
+                    //save the new minimum difference again
                     mindiff = currdiff;
                 }
 
@@ -268,7 +269,48 @@ namespace Assignment2_S19
         // Complete the dayOfProgrammer function below.
         static string dayOfProgrammer(int year)
         {
-                return "";
+            //number of days in a leap year till August month i.e. sum of all days from January to August
+            int daysTillAugLeap = 244;
+            //number of days in a non-leap year till August month i.e sum of all days from January to August
+            int daysTillAugNoLeap = 243;
+            //Programmer day in a year
+            int progDay = 256;
+            //actual date in September month that will be the programmer day
+            int date=1;
+            //Julian calendar check
+            if (year>=1700 && year<=1917)
+            {
+                //check if leap year
+                if (year % 4 == 0)
+                {
+                    date= progDay-daysTillAugLeap;
+                }
+                else
+                {
+                    date = progDay- daysTillAugNoLeap;
+                }
+            }
+            //Gregorian calendar check
+            else if (year >= 1919 && year <= 2700)
+            {
+                //check if leap year
+                if (year % 400 == 0 || (year % 4 == 0 && year % 100 !=0))
+                {
+                    date = progDay - daysTillAugLeap;
+                }
+                else
+                {
+                    date = progDay - daysTillAugNoLeap;
+                }
+            }
+            //Transition period for the year 1918
+            //The next day after January 31st was February 14th, so 13 days need to be taken care of
+            else
+            {
+                date = progDay - daysTillAugLeap+14;
+            }
+        
+            return date+".09."+year;
         }
     
 }
