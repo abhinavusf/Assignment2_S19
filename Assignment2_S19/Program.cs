@@ -77,48 +77,36 @@ namespace Assignment2_S19
         // Complete the rotLeft function below.
         static int[] rotLeft(int[] a, int d)
         {   
-            int n,l;
-            n = a.Length;
-            int []arr = new int[n];
-            l = n - 1;
-            for(int i=1;i<=d;i++)
+            int n,l;//declare integer n and l
+            n = a.Length;//assign the length of array a to n
+            int []arr = new int[n];//create a new array arr
+            l = n - 1;// store the value of n -1 in l
+            for(int i=1;i<=d;i++)// for loop with i as initial value 1, to a maximum of value d with increament of 1 each time| This loop is for the number of rotaions
             {
-                int r = a[0];
-                for(int k=0;k<l;k++)
+                int r = a[0];// store the value present a the 0th position of array in integer r| so that it can be assign to the last element
+                for(int k=0;k<l;k++) // for loop with k as initial value 0, to a maximum of value l with increament of 1 each time|This loop is move every element in the array
                 {
-                    a[k] = a[k + 1];
+                    a[k] = a[k + 1];// store the value present at k+1 position at kth position
                 }
-                a[l] = r;
+                a[l] = r;//assign the value present in r to the last element of the array
             }
-            return a;
+            return a;// return the output : array a
         }
 
         // Complete the maximumToys function below.
         static int maximumToys(int[] prices, int k)
         {
-            int n,r=0,c=0,s=0,l = prices.Length;
-            //for (int i = 0; i < l - 1; i++)
-            //{
-            //    for (int j = i + 1; j < l; j++)
-            //    {
-            //        if (prices[i] > prices[j])
-            //        {
-            //            r = prices[i];
-            //            prices[i] = prices[j];
-            //            prices[j] = r;
-            //        }
-            //    }
-            //}
-            int[] sortedPrices= sortNumbers(prices);
-            for (n = 0; n < l - 1; n++)
+            int n,c=0,s=0,l = prices.Length; //declare and initialize the variables|length of the array price is stored in l
+            int[] sortedPrices= sortNumbers(prices);// sort the pices in ascending order using the method sortNumber and store it in array sortedPrices
+            for (n = 0; n < l - 1; n++)// for loop with n as initial value 0, to a maximum of value l with increament of 1 each time|This loop is to check all the elements in sorted array sortPrices
             {
-                c = sortedPrices[n];
-                s = s + c;                
-                if (s > k)                    
-                break;                          
+                c = sortedPrices[n];// store the value of nth element in array sortedPrices in c
+                s = s + c;//sum up all the element as per the for loop
+                if (s > k)// check if the sum is greater than the k                    
+                break;    // break if the loop is satisfied                      
             }
-            Console.WriteLine("The maximum number of toys that can be bought is: ");
-            return n;
+            Console.WriteLine("The maximum number of toys that can be bought is: ");//print the phase mentioned in the quotes
+            return n;//return the value for number of iteration the loop ran 
         }
 
         public static int[] sortNumbers(int[] array)
