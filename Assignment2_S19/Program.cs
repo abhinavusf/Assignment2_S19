@@ -53,15 +53,17 @@ namespace Assignment2_S19
 
             // closest numbers
             Console.WriteLine("\n\nClosest numbers");
-            int[] arr3 = { 5, 4, 3, 2 };
+            int[] arr3 = {0,0,0,0 };
             int[] r4 = closestNumbers(arr3);
             displayArray(r4);
+            Console.ReadKey();
 
             // Day of programmer
             Console.WriteLine("\n\nDay of Programmer");
             int year = 2017;
             Console.WriteLine(dayOfProgrammer(year));
-          
+            Console.ReadKey();
+
         }
 
         static void displayArray(int []arr)
@@ -228,6 +230,7 @@ namespace Assignment2_S19
             //still check to be on safe side that number of elements is odd
             if (arr.Length%2!=0)
             {
+                //call the sort numbers method and pass the index for median
                 median = sortNumbers(arr)[((arr.Length)/2)];
             }
             return median;
@@ -236,7 +239,30 @@ namespace Assignment2_S19
         // Complete the closestNumbers function below.
         static int[] closestNumbers(int[] arr)
         {
-                return new int[] { };
+            int[] sortedArr = sortNumbers(arr);
+            int mindiff=Math.Abs(sortedArr[1] - sortedArr[0]), currdiff;
+            List<int> list = new List<int>();
+            //for loop to iterate over the numbers in the array and find the difference between neighbouring numbers
+            for (int i=0; i< sortedArr.Length-1; i++)
+            {
+                //the difference should be the magnitude of the difference, so use absolute
+                currdiff = Math.Abs(sortedArr[i+1] - sortedArr[i]);
+                if (currdiff==mindiff)
+                {
+                    list.Add(sortedArr[i]);
+                    list.Add(sortedArr[i + 1]);
+                    mindiff = currdiff;
+                }
+                else if(currdiff<mindiff){
+                    //if the new difference is less than the current difference, clear the list and start adding new numbers
+                    list.Clear();
+                    list.Add(sortedArr[i]);
+                    list.Add(sortedArr[i+1]);
+                    mindiff = currdiff;
+                }
+
+            }
+            return list.ToArray();
         }
 
         // Complete the dayOfProgrammer function below.
