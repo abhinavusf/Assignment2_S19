@@ -127,9 +127,9 @@ namespace Assignment2_S19
                     b = b + arr1[j];
                 }
                 if (a == b)
-                    return ("Yes");
+                    return ("No");
                 }
-            return ("No");
+            return ("Yes");
     
         }
 
