@@ -312,15 +312,24 @@ namespace Assignment2_S19
         // Complete the findMedian function below.
         static int findMedian(int[] arr)
         {
-            int median=0;
-            //as it is mentioned that number of elements will always be odd, then median is (number of terms divided by 2)+1
-            //still check to be on safe side that number of elements is odd
-            if (arr.Length%2!=0)
+            try
             {
-                //call the sort numbers method and pass the index for median
-                median = sortNumbers(arr)[((arr.Length)/2)];
+                int median = 0;
+                //as it is mentioned that number of elements will always be odd, then median is (number of terms divided by 2)+1
+                //still check to be on safe side that number of elements is odd
+                if (arr.Length % 2 != 0)
+                {
+                    //call the sort numbers method and pass the index for median
+                    median = sortNumbers(arr)[((arr.Length) / 2)];
+                }
+                return median;
             }
-            return median;
+            catch
+            {
+                Console.WriteLine("Exception occured while executing find median");
+            }
+            return 0;
+            
         }
             
         // Complete the closestNumbers function below.
