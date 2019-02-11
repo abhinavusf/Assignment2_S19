@@ -349,44 +349,62 @@ namespace Assignment2_S19
         // Complete the findMedian function below.
         static int findMedian(int[] arr)
         {
-            int median=0;
-            //as it is mentioned that number of elements will always be odd, then median is (number of terms divided by 2)+1
-            //still check to be on safe side that number of elements is odd
-            if (arr.Length%2!=0)
+            try
             {
-                //call the sort numbers method and pass the index for median
-                median = sortNumbers(arr)[((arr.Length)/2)];
+                int median = 0;
+                //as it is mentioned that number of elements will always be odd, then median is (number of terms divided by 2)+1
+                //still check to be on safe side that number of elements is odd
+                if (arr.Length % 2 != 0)
+                {
+                    //call the sort numbers method and pass the index for median
+                    median = sortNumbers(arr)[((arr.Length) / 2)];
+                }
+                return median;
             }
-            return median;
+            catch
+            {
+                Console.WriteLine("Exception occured while executing find median");
+            }
+            return 0;
+            
         }
             
         // Complete the closestNumbers function below.
         static int[] closestNumbers(int[] arr)
         {
-            int[] sortedArr = sortNumbers(arr);
-            int mindiff=Math.Abs(sortedArr[1] - sortedArr[0]), currdiff;
-            List<int> list = new List<int>();
-            //for loop to iterate over the numbers in the array and find the difference between neighbouring numbers
-            for (int i=0; i< sortedArr.Length-1; i++)
+            try
             {
-                //the difference should be the magnitude of the difference, so use absolute
-                currdiff = Math.Abs(sortedArr[i+1] - sortedArr[i]);
-                if (currdiff==mindiff)
+                int[] sortedArr = sortNumbers(arr);
+                int mindiff = Math.Abs(sortedArr[1] - sortedArr[0]), currdiff;
+                List<int> list = new List<int>();
+                //for loop to iterate over the numbers in the array and find the difference between neighbouring numbers
+                for (int i = 0; i < sortedArr.Length - 1; i++)
                 {
-                    list.Add(sortedArr[i]);
-                    list.Add(sortedArr[i + 1]);
-                    mindiff = currdiff;
+                    //the difference should be the magnitude of the difference, so use absolute
+                    currdiff = Math.Abs(sortedArr[i + 1] - sortedArr[i]);
+                    if (currdiff == mindiff)
+                    {
+                        list.Add(sortedArr[i]);
+                        list.Add(sortedArr[i + 1]);
+                        mindiff = currdiff;
+                    }
+                    else if (currdiff < mindiff)
+                    {
+                        //if the new difference is less than the current difference, clear the list and start adding new numbers
+                        list.Clear();
+                        list.Add(sortedArr[i]);
+                        list.Add(sortedArr[i + 1]);
+                        //save the new minimum difference again
+                        mindiff = currdiff;
+                    }
                 }
-                else if(currdiff<mindiff){
-                    //if the new difference is less than the current difference, clear the list and start adding new numbers
-                    list.Clear();
-                    list.Add(sortedArr[i]);
-                    list.Add(sortedArr[i+1]);
-                    //save the new minimum difference again
-                    mindiff = currdiff;
-                }
+                return list.ToArray();
             }
-            return list.ToArray();
+            catch
+            {
+                Console.WriteLine("Exception occured while executing closest numbers");
+            }
+            return new int[] { };
         }
 
         // Complete the dayOfProgrammer function below.
