@@ -200,75 +200,93 @@ namespace Assignment2_S19
         // Complete the missingNumbers function below.
         static int[] missingNumbers(int[] arr, int[] brr)
         {
-            // Variables limited to the scope of this method
-            List<int> source;
-            List<int> destination;
-            //making sure source contains more number of elements
-            if (arr.Length<brr.Length)
+            try
             {
-                source = brr.ToList();
-                destination = arr.ToList();
-            }
-            else
-            {
-                destination = brr.ToList();
-                source = arr.ToList();
-            }
-            
-            List<int> final = new List<int>();
-            int[] finalArr = new int[] { };
-
-            // Iterating through the larger Array - brr
-            foreach (int item in source)
-            {
-                // Checking if the number in the source array is present in the destination array
-                if (destination.Contains(item))
+                // Variables limited to the scope of this method
+                List<int> source;
+                List<int> destination;
+                //making sure source contains more number of elements
+                if (arr.Length < brr.Length)
                 {
-                    // Removing that particular number from the smaller Array - arr
-                    destination.Remove(item);
-                    // Adding that to a new Array
-                    final.Add(item);
+                    source = brr.ToList();
+                    destination = arr.ToList();
                 }
+                else
+                {
+                    destination = brr.ToList();
+                    source = arr.ToList();
+                }
+
+                List<int> final = new List<int>();
+                int[] finalArr = new int[] { };
+
+                // Iterating through the larger Array - brr
+                foreach (int item in source)
+                {
+                    // Checking if the number in the source array is present in the destination array
+                    if (destination.Contains(item))
+                    {
+                        // Removing that particular number from the smaller Array - arr
+                        destination.Remove(item);
+                        // Adding that to a new Array
+                        final.Add(item);
+                    }
+                }
+
+                // Removing new Array elements from the Larger Array - brr to remove duplicates
+                foreach (int item in final)
+                {
+                    source.Remove(item);
+                }
+                //removing duplicates
+                ISet<int> set = new HashSet<int>(source);
+                // Converting List to Array
+                finalArr = set.ToArray();
+                // Calling the custom defined sort function
+                return sortNumbers(finalArr);
             }
-            // Removing new Array elements from the Larger Array - brr to remove duplicates
-            foreach (int item in final)
+
+            catch
             {
-                source.Remove(item);
+                Console.WriteLine("Exception occured while computing printPrimeNumbers()");
             }
-            //removing duplicates
-            ISet<int> set = new HashSet<int>(source);
-            // Converting List to Array
-            finalArr = set.ToArray();
-            // Calling the custom defined sort function
-            return sortNumbers(finalArr);
+            return null;
         }
 
         // Complete the gradingStudents function below.
         static int[] gradingStudents(int[] grades)
         {
-            // Variables limited to the scope of this method
-            List<int> add_list = new List<int>();
-            List<int> omt_list = new List<int>();
-            int x = grades.Length;
-            int[] array = new int[x];
-
-            // Iterating through each element of the given Array
-            foreach (int grade in grades)
+            try
             {
-                if (grade >= 38)
+                // Variables limited to the scope of this method
+                List<int> add_list = new List<int>();
+                List<int> omt_list = new List<int>();
+                int x = grades.Length;
+                int[] array = new int[x];
+
+                // Iterating through each element of the given Array
+                foreach (int grade in grades)
                 {
-                    int value = diff(grade);
-                    add_list.Add(value);
+                    if (grade >= 38)
+                    {
+                        int value = diff(grade);
+                        add_list.Add(value);
+                    }
+                    else
+                    {
+                        // List to be omitted, pushing it to a list, Just in case
+                        omt_list.Add(grade);
+                    }
                 }
-                else
-                {
-                    // List to be omitted, pushing it to a list, Just in case
-                    omt_list.Add(grade);
-                }
+                // Converting the List to an Array
+                array = add_list.ToArray();
+                return (array);
             }
-            // Converting the List to an Array
-            array = add_list.ToArray();
-            return (array);
+            catch
+            {
+                Console.WriteLine("Exception occured while computing printPrimeNumbers()");
+            }
+            return null;
         }
 
         // Method to find the difference between the given number and the next multiple of 5
