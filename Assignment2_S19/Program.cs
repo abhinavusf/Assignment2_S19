@@ -19,7 +19,7 @@ namespace Assignment2_S19
 
             // Maximum toys
             Console.WriteLine("\n\nMaximum toys");
-            int k = 5;
+            int k = 50;
             int[] prices = { 1, 12, 5, 111, 200, 1000, 10 };
             Console.WriteLine(maximumToys(prices, k));
             Console.WriteLine("\n***********************************************************************************");
