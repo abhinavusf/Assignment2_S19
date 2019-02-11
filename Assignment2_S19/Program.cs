@@ -77,48 +77,36 @@ namespace Assignment2_S19
         // Complete the rotLeft function below.
         static int[] rotLeft(int[] a, int d)
         {   
-            int n, l;
-            n = a.Length;
-            int []arr = new int[n];
-            l = n - 1;
-            for(int i=1;i<=d;i++)
+            int n,l;//declare integer n and l
+            n = a.Length;//assign the length of array a to n
+            int []arr = new int[n];//create a new array arr
+            l = n - 1;// store the value of n -1 in l
+            for(int i=1;i<=d;i++)// for loop with i as initial value 1, to a maximum of value d with increament of 1 each time| This loop is for the number of rotaions
             {
-                int r = a[0];
-                for(int k = 0; k < l; k++)
+                int r = a[0];// store the value present a the 0th position of array in integer r| so that it can be assign to the last element
+                for(int k=0;k<l;k++) // for loop with k as initial value 0, to a maximum of value l with increament of 1 each time|This loop is move every element in the array
                 {
-                    a[k] = a[k + 1];
+                    a[k] = a[k + 1];// store the value present at k+1 position at kth position
                 }
-                a[l] = r;
+                a[l] = r;//assign the value present in r to the last element of the array
             }
-            return a;
+            return a;// return the output : array a
         }
 
         // Complete the maximumToys function below.
         static int maximumToys(int[] prices, int k)
         {
-            int n,r = 0,c = 0,s = 0, l = prices.Length;
-            //for (int i = 0; i < l - 1; i++)
-            //{
-            //    for (int j = i + 1; j < l; j++)
-            //    {
-            //        if (prices[i] > prices[j])
-            //        {
-            //            r = prices[i];
-            //            prices[i] = prices[j];
-            //            prices[j] = r;
-            //        }
-            //    }
-            //}
-            int[] sortedPrices= sortNumbers(prices);
-            for (n = 0; n < l - 1; n++)
+            int n,c=0,s=0,l = prices.Length; //declare and initialize the variables|length of the array price is stored in l
+            int[] sortedPrices= sortNumbers(prices);// sort the pices in ascending order using the method sortNumber and store it in array sortedPrices
+            for (n = 0; n < l - 1; n++)// for loop with n as initial value 0, to a maximum of value l with increament of 1 each time|This loop is to check all the elements in sorted array sortPrices
             {
-                c = sortedPrices[n];
-                s = s + c;                
-                if (s > k)                    
-                break;                          
+                c = sortedPrices[n];// store the value of nth element in array sortedPrices in c
+                s = s + c;//sum up all the element as per the for loop
+                if (s > k)// check if the sum is greater than the k                    
+                break;    // break if the loop is satisfied                      
             }
-            Console.WriteLine("The maximum number of toys that can be bought is: ");
-            return n;
+            Console.WriteLine("The maximum number of toys that can be bought is: ");//print the phase mentioned in the quotes
+            return n;//return the value for number of iteration the loop ran 
         }
 
         public static int[] sortNumbers(int[] array)
@@ -171,89 +159,73 @@ namespace Assignment2_S19
 
             //int[] arr1 = { 203, 204, 205, 206, 207, 208, 203, 204, 205, 206 };
             //int[] brr = { 203, 204, 204, 205, 206, 207, 205, 208, 203, 206, 205, 206, 204 };
-            
-            // Iterating through the larger Array - brr
+
             foreach (int item in source)
             {
                 if (destination.Contains(item))
                 {
-                    // Removing that particular number from the smaller Array - arr
                     destination.Remove(item);
-                    // Adding that to a new Array
                     final.Add(item);
                 }
             }
-            // Removing new Array elements from the Larger Array - brr to remove duplicates
             foreach (int item in final)
             {
                 source.Remove(item);
             }
-            // Converting List to Array
             finalArr = source.ToArray();
-            // Calling the custom defined sort function
             return sortNumbers(finalArr);
+
         }
     
         // Complete the gradingStudents function below.
         static int[] gradingStudents(int[] grades)
         {
-            // Variables limited to the scope of this method
             List<int> add_list = new List<int>();
-            List<int> omt_list = new List<int>();
             int x = grades.Length;
             int[] array = new int[x];
-
-            // Iterating through each element of the given Array
             foreach (int grade in grades)
             {
-                if (grade >= 38)
+                if (grade > 40)
                 {
                     int value = diff(grade);
                     add_list.Add(value);
                 }
                 else
                 {
-                    // List to be omitted, pushing it to a list, Just in case
-                    omt_list.Add(grade);
+                    add_list.Add(grade);
                 }
+
             }
-            // Converting the List to an Array
             array = add_list.ToArray();
             return (array);
         }
 
-        // Method to find the difference between the given number and the next multiple of 5
         public static int diff(int n)
         {
-            // Variables limited to the scope of this method
             int ones = n % 10;
             int tens = n / 10;
             string a = "5";
             string b = "0";
             string x = n.ToString();
             
-            // Checking if the number is a multiple of 5
             if (ones != 0 && ones != 5)
             {
-                // Feasibility check (5): Check if the number qualifies to be rounded off to the next multiple of 5
                 if (ones > 2 && ones < 5)
                 {
                     string str = string.Concat(tens, a);
                     return Convert.ToInt32(str);
                 }
-                // Feasibility check (0): Check if the number qualifies to be rounded off to the next multiple of 5
                 else if (ones > 7 && ones <= 9)
                 {
                     string str1 = string.Concat((tens + 1), b);
                     return Convert.ToInt32(str1);
                 }
-                // If the number doesn't qualifies to be rounded off, return the same number
                 else
                 {
                     return n;
                 }
+
             }
-            // If number is a multiple of 5 return the same number
             else
             {
                 return n;
@@ -285,7 +257,7 @@ namespace Assignment2_S19
             {
                 //the difference should be the magnitude of the difference, so use absolute
                 currdiff = Math.Abs(sortedArr[i+1] - sortedArr[i]);
-                if (currdiff == mindiff)
+                if (currdiff==mindiff)
                 {
                     list.Add(sortedArr[i]);
                     list.Add(sortedArr[i + 1]);
@@ -295,7 +267,7 @@ namespace Assignment2_S19
                     //if the new difference is less than the current difference, clear the list and start adding new numbers
                     list.Clear();
                     list.Add(sortedArr[i]);
-                    list.Add(sortedArr[i + 1]);
+                    list.Add(sortedArr[i+1]);
                     //save the new minimum difference again
                     mindiff = currdiff;
                 }
@@ -315,7 +287,7 @@ namespace Assignment2_S19
             //actual date in September month that will be the programmer day
             int date=1;
             //Julian calendar check
-            if (year >= 1700 && year <= 1917)
+            if (year>=1700 && year<=1917)
             {
                 //check if leap year
                 if (year % 4 == 0)
@@ -331,7 +303,7 @@ namespace Assignment2_S19
             else if (year >= 1919 && year <= 2700)
             {
                 //check if leap year
-                if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0))
+                if (year % 400 == 0 || (year % 4 == 0 && year % 100 !=0))
                 {
                     date = progDay - daysTillAugLeap;
                 }
@@ -346,7 +318,9 @@ namespace Assignment2_S19
             {
                 date = progDay - daysTillAugLeap+14;
             }
-            return date + ".09." + year;
+        
+            return date+".09."+year;
         }
+    
 }
 }
