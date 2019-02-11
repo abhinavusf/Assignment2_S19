@@ -26,7 +26,7 @@ namespace Assignment2_S19
 
             // Balanced sums
             Console.WriteLine("\n\nBalanced sums");
-            List<int> arr = new List<int> { 1, 2, 3 };
+            List<int> arr = new List<int> { 1,2,3 };
             Console.WriteLine(balancedSums(arr));
             Console.ReadKey();
 
@@ -96,56 +96,67 @@ namespace Assignment2_S19
         // Complete the maximumToys function below.
         static int maximumToys(int[] prices, int k)
         {
-            int n,c=0,s=0,l = prices.Length; //declare and initialize the variables|length of the array price is stored in l
-            int[] sortedPrices= sortNumbers(prices);// sort the pices in ascending order using the method sortNumber and store it in array sortedPrices
-            for (n = 0; n < l - 1; n++)// for loop with n as initial value 0, to a maximum of value l with increament of 1 each time|This loop is to check all the elements in sorted array sortPrices
+            int n=0,c=0,s=0,l = prices.Length; //declare and initialize the variables|length of the array price is stored in l
+            int[] sortedPrices= sortNumbers(prices);// sort the pices in ascending order using the function sortNumber and store it in array sortedPrices
+            for (int j = 0; j < l - 1; j++)// for loop to check all element in the array 
             {
-                c = sortedPrices[n];// store the value of nth element in array sortedPrices in c
-                s = s + c;//sum up all the element as per the for loop
-                if (s > k)// check if the sum is greater than the k                    
-                break;    // break if the loop is satisfied                      
+                if (sortedPrices[j] < 0)// IF loop to check if the element in the array is negative
+                {
+                    Console.WriteLine("The price of any toy cannot be less than equal to zero");
+                    return 0;
+                }
             }
+            {
+                for (n=0; n < l - 1; n++)// for loop with n as initial value 0, to a maximum of value l with increament of 1 each time|This loop is to check all the elements in sorted array sortPrices
+                {
+                    c = sortedPrices[n];// store the value of nth element in array sortedPrices in c
+                    s = s + c;//sum up all the element as per the for loop
+                    if (s > k)// check if the sum is greater than the k                    
+                        break;    // break if the loop is satisfied                      
+                }
+            } 
             Console.WriteLine("The maximum number of toys that can be bought is: ");//print the phase mentioned in the quotes
             return n;//return the value for number of iteration the loop ran 
         }
 
-        public static int[] sortNumbers(int[] array)
+        public static int[] sortNumbers(int[] array)// this method to sort the array 
         {
-            for (int i = 0; i < array.Length - 1; i++)
+            for (int i = 0; i < array.Length - 1; i++)// for loop with i as initial value 0, to a maximum of value of length of i/p array -1 with increament of 1 each time
             {
-                for (int j = i + 1; j < array.Length; j++)
+                for (int j = i + 1; j < array.Length; j++)// for loop with j as initial value i+1, to a maximum of value of length of i/p array with increament of 1 each time
                 {
-                    if (array[i] > array[j])
+                    if (array[i] > array[j])// IF loop to check if the value at i th positon is greater than the value at j th position
                     {
-                        int r = array[i];
-                        array[i] = array[j];
-                        array[j] = r;
+                        int r = array[i];// assign the value of i th element of array to integer r
+                        array[i] = array[j];// assign the value of j th element of array to i th element of array 
+                        array[j] = r;// assign the value stored in r to the j th element in r
                     }
                 }
             }
-            return array;
+            return array;// return the output of method: array
         }
 
         // Complete the balancedSums function below.
         static string balancedSums(List<int> arr)
         {
-         int a = 0, b = 0,j, i;
-            int[] arr1 = arr.ToArray();
-            for (i = 0; i < arr1.Length; ++i)
+         int a=0, b=0,j, i,k;// declare and initialize variables
+            int[] arr1 = arr.ToArray();// convert the input list to array arr1
+            for (i = 0; i < arr1.Length; i++)// for loop to check all the elements in arr1                
+            {
+                for (j = 0; j < i; j++)//for loop to check the left sum
                 {
-                for (j = 0; j < i; j++)
+                    a = a + arr1[j];// add the elements of the array as per the loop and store it in a
+                }
+                for (k = i + 1; k < arr1.Length; k++)//for loop to check the right sum
                 {
-                    a = a + arr1[j];
+                    b = b + arr1[k];// add the elements of the array as per the loop and store it in b
                 }
-                for (j = i + 1; j < arr1.Length; j++)
-                {
-                    b = b + arr1[j];
-                }
-                if (a == b)
-                    return ("No");
-                }
-            return ("Yes");
-    
+                if (a == b)//IF loop to check if a is equal to b
+                    return ("YES"); // print yes if a is equal to b
+                a = 0;// re initialize the a as 0
+                b = 0;// re initialize the b as 0
+            }
+           return ("NO");// return NO if a is not equal to b
         }
 
         // Complete the missingNumbers function below.
