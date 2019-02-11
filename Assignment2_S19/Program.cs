@@ -163,6 +163,7 @@ namespace Assignment2_S19
             // Iterating through the larger Array - brr
             foreach (int item in source)
             {
+                // Checking if the number in the source array is present in the destination array
                 if (destination.Contains(item))
                 {
                     // Removing that particular number from the smaller Array - arr
