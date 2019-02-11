@@ -11,7 +11,7 @@ namespace Assignment2_S19
         {
             // left rotation
             Console.WriteLine("Left Rotation");
-            int d = 4;
+            int d = 0;
             int[] a = { 1, 2, 3, 4, 5 };
             int[] r = rotLeft(a, d);
             displayArray(r);
@@ -26,7 +26,7 @@ namespace Assignment2_S19
 
             // Balanced sums
             Console.WriteLine("\n\nBalanced sums");
-            List<int> arr = new List<int> { 2,0,0,0 };
+            List<int> arr = new List<int> { 1,2,3 };
             Console.WriteLine(balancedSums(arr));
             Console.ReadKey();
 
@@ -79,6 +79,11 @@ namespace Assignment2_S19
         {
             try
             {
+                if (a.Length==0)//Corner case to check id the array is empty
+                {
+                    Console.Write("Error: Array is empty");
+                    return null;
+                }
                 int n, l;//declare integer n and l
                 n = a.Length;//assign the length of array a to n
                 int[] arr = new int[n];//create a new array arr
@@ -107,7 +112,16 @@ namespace Assignment2_S19
         {
             try
             {
-
+                if (prices.Length == 0)//Corner case to check id the array is empty
+                {
+                    Console.Write("Error: Array is empty");
+                    return 0;
+                }
+                if (k<0)//Corner case to check if k is negative
+                {
+                    Console.Write("Error: amount cannot be negative");
+                    return 0;
+                }
                 int n = 0, c = 0, s = 0, l = prices.Length; //declare and initialize the variables|length of the array price is stored in l
                 int[] sortedPrices = sortNumbers(prices);// sort the pices in ascending order using the function sortNumber and store it in array sortedPrices
                 for (int j = 0; j < l - 1; j++)// for loop to check all element in the array 
@@ -172,6 +186,11 @@ namespace Assignment2_S19
             {
                 int a = 0, b = 0, j, i, k;// declare and initialize variables
                 int[] arr1 = arr.ToArray();// convert the input list to array arr1
+                if(arr1.Length == 0)//Corner case to check id the array is empty
+                {
+                    Console.Write("Error: Array is empty");
+                    return null;
+                }
                 for (i = 0; i < arr1.Length; i++)// for loop to check all the elements in arr1                
                 {
                     for (j = 0; j < i; j++)//for loop to check the left sum
