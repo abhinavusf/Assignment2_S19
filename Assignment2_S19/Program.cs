@@ -26,7 +26,7 @@ namespace Assignment2_S19
 
             // Balanced sums
             Console.WriteLine("\n\nBalanced sums");
-            List<int> arr = new List<int> { 1,2,3 };
+            List<int> arr = new List<int> { 2,0,0,0 };
             Console.WriteLine(balancedSums(arr));
             Console.ReadKey();
 
@@ -317,48 +317,57 @@ namespace Assignment2_S19
         // Complete the dayOfProgrammer function below.
         static string dayOfProgrammer(int year)
         {
-            //number of days in a leap year till August month i.e. sum of all days from January to August
-            int daysTillAugLeap = 244;
-            //number of days in a non-leap year till August month i.e sum of all days from January to August
-            int daysTillAugNoLeap = 243;
-            //Programmer day in a year
-            int progDay = 256;
-            //actual date in September month that will be the programmer day
-            int date=1;
-            //Julian calendar check
-            if (year>=1700 && year<=1917)
+            try
             {
-                //check if leap year
-                if (year % 4 == 0)
+                //number of days in a leap year till August month i.e. sum of all days from January to August
+                int daysTillAugLeap = 244;
+                //number of days in a non-leap year till August month i.e sum of all days from January to August
+                int daysTillAugNoLeap = 243;
+                //Programmer day in a year
+                int progDay = 256;
+                //actual date in September month that will be the programmer day
+                int date = 1;
+                //Julian calendar check
+                if (year >= 1700 && year <= 1917)
                 {
-                    date= progDay-daysTillAugLeap;
+                    //check if leap year
+                    if (year % 4 == 0)
+                    {
+                        date = progDay - daysTillAugLeap;
+                    }
+                    else
+                    {
+                        date = progDay - daysTillAugNoLeap;
+                    }
                 }
+                //Gregorian calendar check
+                else if (year >= 1919 && year <= 2700)
+                {
+                    //check if leap year
+                    if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0))
+                    {
+                        date = progDay - daysTillAugLeap;
+                    }
+                    else
+                    {
+                        date = progDay - daysTillAugNoLeap;
+                    }
+                }
+                //Transition period for the year 1918
+                //The next day after January 31st was February 14th, so 13 days need to be taken care of
                 else
                 {
-                    date = progDay- daysTillAugNoLeap;
+                    date = progDay - daysTillAugLeap + 14;
                 }
+
+                return date + ".09." + year;
             }
-            //Gregorian calendar check
-            else if (year >= 1919 && year <= 2700)
+            catch
             {
-                //check if leap year
-                if (year % 400 == 0 || (year % 4 == 0 && year % 100 !=0))
-                {
-                    date = progDay - daysTillAugLeap;
-                }
-                else
-                {
-                    date = progDay - daysTillAugNoLeap;
-                }
+                Console.WriteLine("Exception occured while executing day of Programmer");
             }
-            //Transition period for the year 1918
-            //The next day after January 31st was February 14th, so 13 days need to be taken care of
-            else
-            {
-                date = progDay - daysTillAugLeap+14;
-            }
-        
-            return date+".09."+year;
+            return "";
+            
         }
     
 }
