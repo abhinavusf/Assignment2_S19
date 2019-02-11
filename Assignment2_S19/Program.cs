@@ -15,20 +15,21 @@ namespace Assignment2_S19
             int[] a = { 1, 2, 3, 4, 5 };
             int[] r = rotLeft(a, d);
             displayArray(r);
-            Console.ReadKey();
+            Console.WriteLine("\n***********************************************************************************");
 
             // Maximum toys
             Console.WriteLine("\n\nMaximum toys");
             int k = 5;
             int[] prices = { 1, 12, 5, 111, 200, 1000, 10 };
             Console.WriteLine(maximumToys(prices, k));
-            Console.ReadKey();
+            Console.WriteLine("\n***********************************************************************************");
+
 
             // Balanced sums
             Console.WriteLine("\n\nBalanced sums");
             List<int> arr = new List<int> { 1,2,3};
             Console.WriteLine(balancedSums(arr));
-            Console.ReadKey();
+            Console.WriteLine("\n***********************************************************************************");
 
             // Missing numbers
             Console.WriteLine("\n\nMissing numbers");
@@ -36,27 +37,29 @@ namespace Assignment2_S19
             int[] brr = { 203, 204, 204, 205, 206, 207, 205, 208, 203, 206, 205, 206, 204 };
             int[] r2 = missingNumbers(arr1, brr);
             displayArray(r2);
+            Console.WriteLine("\n***********************************************************************************");
 
             // grading students
             Console.WriteLine("\n\nGrading students");
             int[] grades = { 73, 67, 38, 33 };
             int[] r3 = gradingStudents(grades);
             displayArray(r3);
-            Console.ReadKey();
+            Console.WriteLine("\n***********************************************************************************");
 
-                      
+
             // find the median
             Console.WriteLine("\n\nFind the median");
             int[] arr2 = {0, 1, 2, 4, 6, 5, 3};
             Console.WriteLine(findMedian(arr2));
-            Console.ReadKey();
+            Console.WriteLine("\n***********************************************************************************");
+
 
             // closest numbers
             Console.WriteLine("\n\nClosest numbers");
             int[] arr3 = { 5, 4, 3, 2 };
             int[] r4 = closestNumbers(arr3);
             displayArray(r4);
-            Console.ReadKey();
+            Console.WriteLine("\n***********************************************************************************");
 
             // Day of programmer
             Console.WriteLine("\n\nDay of Programmer");
@@ -284,8 +287,26 @@ namespace Assignment2_S19
                 // Variables limited to the scope of this method
                 List<int> add_list = new List<int>();
                 List<int> omt_list = new List<int>();
-                int x = grades.Length;
+                //Grades should be between 0 and 100
+                bool flag=true;
+                for (int i = 0; i < grades.Length; i++)
+                {
+                    //check if grades are above 100 or below 0.
+                    if (grades[i] > 100 || grades[i] < 0)
+                    {
+                        flag = false;
+                    }
+                }
+                if (flag==false)
+                {
+                    Console.WriteLine("Grades are not in the range 0 to 100");
+                }
+                else
+                {
+                    int x = grades.Length;
                 int[] array = new int[x];
+
+
 
                 // Iterating through each element of the given Array
                 foreach (int grade in grades)
@@ -298,12 +319,14 @@ namespace Assignment2_S19
                     else
                     {
                         // List to be omitted, pushing it to a list, Just in case
-                        omt_list.Add(grade);
+                        add_list.Add(grade);
                     }
                 }
                 // Converting the List to an Array
                 array = add_list.ToArray();
                 return (array);
+                }
+                
             }
             catch
             {
@@ -355,6 +378,11 @@ namespace Assignment2_S19
         {
             try
             {
+                if (arr.Length == 0)
+                {
+                    Console.WriteLine("Array should contain numbers");
+                    return -1;
+                }
                 int median = 0;
                 //as it is mentioned that number of elements will always be odd, then median is (number of terms divided by 2)+1
                 //still check to be on safe side that number of elements is odd
@@ -378,31 +406,39 @@ namespace Assignment2_S19
         {
             try
             {
-                int[] sortedArr = sortNumbers(arr);
-                int mindiff = Math.Abs(sortedArr[1] - sortedArr[0]), currdiff;
-                List<int> list = new List<int>();
-                //for loop to iterate over the numbers in the array and find the difference between neighbouring numbers
-                for (int i = 0; i < sortedArr.Length - 1; i++)
+                if (arr==null || arr.Length<2)
                 {
-                    //the difference should be the magnitude of the difference, so use absolute
-                    currdiff = Math.Abs(sortedArr[i + 1] - sortedArr[i]);
-                    if (currdiff == mindiff)
-                    {
-                        list.Add(sortedArr[i]);
-                        list.Add(sortedArr[i + 1]);
-                        mindiff = currdiff;
-                    }
-                    else if (currdiff < mindiff)
-                    {
-                        //if the new difference is less than the current difference, clear the list and start adding new numbers
-                        list.Clear();
-                        list.Add(sortedArr[i]);
-                        list.Add(sortedArr[i + 1]);
-                        //save the new minimum difference again
-                        mindiff = currdiff;
-                    }
+                    Console.WriteLine("There should be at least two numbers for comparision or should not be null");
                 }
-                return list.ToArray();
+                else
+                {
+                    int[] sortedArr = sortNumbers(arr);
+                    int mindiff = Math.Abs(sortedArr[1] - sortedArr[0]), currdiff;
+                    List<int> list = new List<int>();
+                    //for loop to iterate over the numbers in the array and find the difference between neighbouring numbers
+                    for (int i = 0; i < sortedArr.Length - 1; i++)
+                    {
+                        //the difference should be the magnitude of the difference, so use absolute
+                        currdiff = Math.Abs(sortedArr[i + 1] - sortedArr[i]);
+                        if (currdiff == mindiff)
+                        {
+                            list.Add(sortedArr[i]);
+                            list.Add(sortedArr[i + 1]);
+                            mindiff = currdiff;
+                        }
+                        else if (currdiff < mindiff)
+                        {
+                            //if the new difference is less than the current difference, clear the list and start adding new numbers
+                            list.Clear();
+                            list.Add(sortedArr[i]);
+                            list.Add(sortedArr[i + 1]);
+                            //save the new minimum difference again
+                            mindiff = currdiff;
+                        }
+                    }
+                    return list.ToArray();
+                }
+                
             }
             catch
             {
