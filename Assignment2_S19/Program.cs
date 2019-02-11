@@ -160,72 +160,88 @@ namespace Assignment2_S19
             //int[] arr1 = { 203, 204, 205, 206, 207, 208, 203, 204, 205, 206 };
             //int[] brr = { 203, 204, 204, 205, 206, 207, 205, 208, 203, 206, 205, 206, 204 };
 
+            // Iterating through the larger Array - brr
             foreach (int item in source)
             {
                 if (destination.Contains(item))
                 {
+                    // Removing that particular number from the smaller Array - arr
                     destination.Remove(item);
+                    // Adding that to a new Array
                     final.Add(item);
                 }
             }
+            // Removing new Array elements from the Larger Array - brr to remove duplicates
             foreach (int item in final)
             {
                 source.Remove(item);
             }
+            // Converting List to Array
             finalArr = source.ToArray();
+            // Calling the custom defined sort function
             return sortNumbers(finalArr);
-
         }
-    
+
         // Complete the gradingStudents function below.
         static int[] gradingStudents(int[] grades)
         {
+            // Variables limited to the scope of this method
             List<int> add_list = new List<int>();
+            List<int> omt_list = new List<int>();
             int x = grades.Length;
             int[] array = new int[x];
+
+            // Iterating through each element of the given Array
             foreach (int grade in grades)
             {
-                if (grade > 40)
+                if (grade >= 38)
                 {
                     int value = diff(grade);
                     add_list.Add(value);
                 }
                 else
                 {
-                    add_list.Add(grade);
+                    // List to be omitted, pushing it to a list, Just in case
+                    omt_list.Add(grade);
                 }
-
             }
+            // Converting the List to an Array
             array = add_list.ToArray();
             return (array);
         }
 
+        // Method to find the difference between the given number and the next multiple of 5
         public static int diff(int n)
         {
+            // Variables limited to the scope of this method
             int ones = n % 10;
             int tens = n / 10;
             string a = "5";
             string b = "0";
             string x = n.ToString();
-            
+
+            // Checking if the number is a multiple of 5
             if (ones != 0 && ones != 5)
             {
+                // Feasibility check (5): Check if the number qualifies to be rounded off to the next multiple of 5
                 if (ones > 2 && ones < 5)
                 {
                     string str = string.Concat(tens, a);
                     return Convert.ToInt32(str);
                 }
+                // Feasibility check (0): Check if the number qualifies to be rounded off to the next multiple of 5
                 else if (ones > 7 && ones <= 9)
                 {
                     string str1 = string.Concat((tens + 1), b);
                     return Convert.ToInt32(str1);
                 }
+                // If the number doesn't qualifies to be rounded off, return the same number
                 else
                 {
                     return n;
                 }
-
             }
+            // If number is a multiple of 5 return the same number
             else
             {
                 return n;
